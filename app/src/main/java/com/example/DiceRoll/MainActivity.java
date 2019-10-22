@@ -74,7 +74,9 @@ public class MainActivity extends AppCompatActivity {
         int numberDie = DiceRandom.nextInt(6);
         DiceRollOutput.setText("Rolled : "+Integer.toString(numberDie));
 
+
         //check for the correct guess from the user and display the congratulatory text or conolation message
+        //add in the next section of keeping score here
         if (Integer.toString(numberDie).equals(UserGuess.getText().toString())){
 
             CongratText.setText("Congratulations :D");
