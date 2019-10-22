@@ -17,6 +17,11 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextView DiceRollOutput;
+    private TextView CongratText;
+    private TextView UserGuess;
+    private Random DiceRandom;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //can create some setup code here, note - find out how to impliment basic java classes main(string args) or if it is replaced by this method
+        DiceRollOutput = this.findViewById(R.id.RollResultText); //get reference to roll ouput
+        CongratText = this.findViewById(R.id.CongratulationsText);
+        UserGuess = this.findViewById(R.id.UserGuess);
+        DiceRandom = new Random(); //cfeate a new random number generator
     }
 
     @Override
@@ -56,18 +67,50 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void main (String[] args ) {
-
-
-    }
-
     public void RollTheDice(View view){
+        //roll die button clicked - dont forget to link this to the button in the veiw editor
 
-        TextView DiceRollOutput = this.findViewById(R.id.RollDisplay);
-
-        Random DiceRandom = new Random();
+        //generate and display the random die roll reult to the user
         int numberDie = DiceRandom.nextInt(6);
+        DiceRollOutput.setText("Rolled : "+Integer.toString(numberDie));
 
-        DiceRollOutput.setText(Integer.toString(numberDie));
+        //check for the correct guess from the user and display the congratulatory text or conolation message
+        if (Integer.toString(numberDie).equals(UserGuess.getText().toString())){
+
+            CongratText.setText("Congratulations :D");
+        }
+        else {
+
+            CongratText.setText("Better Luck Next Time :C");
+        }
+
+
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
